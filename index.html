@@ -1,22 +1,117 @@
-<h3>Eng yaxshi dizaynerlar</h3>
-            <p>Tekshirilgan va tajribali O'zbek dizaynerlari bilan ishlang</p>
-        </div>
-        <div class="card">
-            <div class="icon">⚡</div>
-            <h3>Tez va qulay</h3>
-            <p>Loyihangizni joylashtiring, bir kunda dizayner toping</p>
-        </div>
-        <div class="card">
-            <div class="icon">🔒</div>
-            <h3>Xavfsiz to'lov</h3>
-            <p>Payme va Click orqali xavfsiz to'lov tizimi</p>
-        </div>
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VCreator — Kiberxavfsizlik Platformasi</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#f8fafc;color:#111;min-height:100vh}
+  .container{max-width:700px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  .header{background:#fff;border-radius:16px;padding:1.5rem;margin-bottom:1.25rem;border:1px solid #e5e7eb}
+  .logo{display:flex;align-items:center;gap:14px;margin-bottom:1rem}
+  .logo-mark{width:46px;height:46px;border-radius:12px;background:#185FA5;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700;letter-spacing:-1px;flex-shrink:0}
+  .logo-name{font-size:22px;font-weight:700;color:#111}
+  .logo-sub{font-size:13px;color:#6b7280;margin-top:2px}
+  .progress-bar{height:8px;background:#f1f5f9;border-radius:99px;overflow:hidden;margin-bottom:6px}
+  .progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#185FA5,#3b82f6);transition:width 0.5s}
+  .progress-text{font-size:12px;color:#9ca3af}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.25rem}
+  .stat{background:#fff;border-radius:12px;padding:1rem;text-align:center;border:1px solid #e5e7eb}
+  .stat-num{font-size:26px;font-weight:700;color:#185FA5}
+  .stat-label{font-size:12px;color:#6b7280;margin-top:4px}
+  .tabs{display:flex;gap:8px;margin-bottom:1.25rem;flex-wrap:wrap}
+  .tab{padding:8px 18px;font-size:13px;border:1px solid #d1d5db;border-radius:99px;cursor:pointer;background:#fff;color:#6b7280;font-weight:500}
+  .tab.active{background:#185FA5;color:#fff;border-color:#185FA5}
+  .weeks{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:1.25rem}
+  .week-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:14px;padding:1rem;cursor:pointer}
+  .week-card.active{border-color:#185FA5;background:#EBF4FC}
+  .tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;display:inline-block;margin-bottom:8px}
+  .tag-teal{background:#E1F5EE;color:#085041}
+  .tag-blue{background:#E6F1FB;color:#0C447C}
+  .tag-coral{background:#FAECE7;color:#712B13}
+  .week-title{font-size:13px;font-weight:600;color:#111;margin-bottom:4px;line-height:1.4}
+  .week-time{font-size:12px;color:#9ca3af}
+  .lesson-panel{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:1.25rem;display:none}
+  .lesson-panel.show{display:block}
+  .lesson-header{display:flex;align-items:center;gap:12px;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid #f1f5f9}
+  .lesson-icon{width:40px;height:40px;border-radius:10px;background:#EBF4FC;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .lesson-title{font-size:15px;font-weight:600;color:#111}
+  .lesson-sub{font-size:12px;color:#6b7280;margin-top:2px}
+  .lesson-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid #f8fafc}
+  .lesson-item:last-child{border-bottom:none}
+  .checkbox{width:20px;height:20px;border:1.5px solid #d1d5db;border-radius:5px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:1px;background:#fff;font-size:12px}
+  .checkbox.done{background:#185FA5;border-color:#185FA5;color:#fff}
+  .item-text{font-size:13px;color:#374151;line-height:1.5}
+  .item-time{font-size:11px;color:#9ca3af;margin-top:3px}
+  .questions{margin-top:1rem;padding-top:1rem;border-top:1px solid #f1f5f9}
+  .q-label{font-size:12px;color:#6b7280;margin-bottom:8px;font-weight:500}
+  .q-btn{width:100%;padding:10px 14px;font-size:13px;border:1px solid #e5e7eb;border-radius:10px;cursor:pointer;background:#f8fafc;color:#374151;text-align:left;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <div class="logo-mark">VC</div>
+      <div>
+        <div class="logo-name">VCreator</div>
+[18.05.2026 1:02] My portfolio: <div class="logo-sub">Kali Linux & Kiberxavfsizlik — 3 oylik o'quv platformasi</div>
+      </div>
     </div>
-</section>
-
-<footer>
-    <p>© 2026 VCreator.uz — Barcha huquqlar himoyalangan</p>
-</footer>
-
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+    <div class="progress-text" id="prog-text">0 / 36 dars bajarildi (0%)</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="s-done">0</div><div class="stat-label">Bajarildi</div></div>
+    <div class="stat"><div class="stat-num">36</div><div class="stat-label">Jami dars</div></div>
+    <div class="stat"><div class="stat-num" id="s-week">1</div><div class="stat-label">Joriy hafta</div></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="setMonth(0,this)">🌱 1-oy: Asos</button>
+    <button class="tab" onclick="setMonth(1,this)">⚙️ 2-oy: Amaliyot</button>
+    <button class="tab" onclick="setMonth(2,this)">🛡️ 3-oy: Hujum & Himoya</button>
+  </div>
+  <div class="weeks" id="weeks"></div>
+  <div class="lesson-panel" id="lesson-panel">
+    <div class="lesson-header">
+      <div class="lesson-icon">📖</div>
+      <div>
+        <div class="lesson-title" id="l-title"></div>
+        <div class="lesson-sub" id="l-sub"></div>
+      </div>
+    </div>
+    <div id="l-items"></div>
+    <div class="questions">
+      <div class="q-label">💬 Bu hafta haqida savol:</div>
+      <button class="q-btn" id="q1"></button>
+      <button class="q-btn" id="q2"></button>
+    </div>
+  </div>
+</div>
+<script>
+const data=[
+  {t:"Hafta 1 — Linux asoslari",s:"~3-4 soat",tag:"Boshlang'ich",tc:"teal",m:0,items:[["ls, cd, pwd, mkdir, rm buyruqlar","20 daqiqa"],["Fayl ruxsatlari: chmod, chown","25 daqiqa"],["Matn muharrirlari: nano, vim","20 daqiqa"],["Paketlar: apt install, update","15 daqiqa"],["Amaliy: terminal bilan ishlash","30 daqiqa"],["Mustaqil vazifa: skript yozing","40 daqiqa"]],q:["Linux terminalida fayl yaratish qanday?","chmod 755 nima degani?"]},
+  {t:"Hafta 2 — Kali Linux o'rnatish",s:"~4 soat",tag:"Boshlang'ich",tc:"teal",m:0,items:[["VirtualBox yoki VMware o'rnatish","30 daqiqa"],["Kali Linux ISO yuklab olish","15 daqiqa"],["Virtual mashinada Kali o'rnatish","45 daqiqa"],["Asosiy sozlamalar va yangilanish","20 daqiqa"],["Kali toollarni ko'rish","25 daqiqa"],["Amaliy: birinchi Kali sessiyasi","30 daqiqa"]],q:["Kali Linuxni VirtualBoxda qanday o'rnataman?","Kali va Ubuntu farqi nima?"]},
+  {t:"Hafta 3 — Tarmoq asoslari",s:"~3 soat",tag:"Boshlang'ich",tc:"teal",m:0,items:[["IP manzil, subnet, gateway nima?","25 daqiqa"],["TCP vs UDP farqi","20 daqiqa"],["Portlar: 80, 443, 22, 21","20 daqiqa"],["ifconfig, ip a, ping, traceroute","25 daqiqa"],["DNS qanday ishlaydi?","20 daqiqa"],["Amaliy: tarmoqni o'rganing","30 daqiqa"]],q:["IP manzil va subnet mask nima?","TCP handshake qanday ishlaydi?"]},
+  {t:"Hafta 4 — Python asoslari",s:"~4 soat",tag:"O'rta",tc:"blue",m:0,items:[["Python o'rnatish va Hello World","15 daqiqa"],["O'zgaruvchilar, ro'yxat, tsikl","30 daqiqa"],["Funksiyalar va modullar","25 daqiqa"],["Fayl bilan ishlash: open(), read()","25 daqiqa"],["Socket moduli bilan tarmoq","35 daqiqa"],["Amaliy: port skaner yozing","45 daqiqa"]],q:["Python bilan port skaner qanday yoziladi?","socket moduli nima uchun kerak?"]},
+  {t:"Hafta 5 — Nmap & Skanerlash",s:"~3 soat",tag:"O'rta",tc:"blue",m:1,items:[["Nmap nima va qanday ishlaydi?","20 daqiqa"],["nmap -sV, -sC, -A buyruqlar","30 daqiqa"],["OS detection: -O flag","20 daqiqa"],["Stealth scan: -sS (SYN scan)","25 daqiqa"],["Nmap scripting engine (NSE)","30 daqiqa"],["Amaliy: tarmog'ingizni skaning","35 daqiqa"]],q:["Nmap bilan barcha portlarni qanday skanlayman?","NSE script qanday ishlatiladi?"]},
+  {t:"Hafta 6 — Metasploit",s:"~4 soat",tag:"O'rta",tc:"blue",m:1,items:[["Metasploit nima? msfconsole","25 daqiqa"],["search, use, show options","25 daqiqa"],["Exploit va payload tushunchasi","30 daqiqa"],["Meterpreter sessiyasi","35 daqiqa"],["Metasploitable2 bilan amaliyot","50 daqiqa"],["Amaliy: CTF masalasi","40 daqiqa"]],q:["Metasploitable2 qanday testlanadi?","Meterpreter nima?"]},
+[18.05.2026 1:02] My portfolio: {t:"Hafta 7 — Wireshark",s:"~3 soat",tag:"O'rta",tc:"blue",m:1,items:[["Wireshark o'rnatish va interfeys","20 daqiqa"],["Paketlarni ushlash: capture filter","25 daqiqa"],["Display filter: ip.addr, tcp.port","25 daqiqa"],["HTTP, DNS, FTP trafikni tahlil","30 daqiqa"],["Parolni paketdan topish","30 daqiqa"],["Amaliy: real traffic analizi","30 daqiqa"]],q:["Wireshark bilan HTTP parolni qanday topaman?","Display filter qanday yoziladi?"]},
+  {t:"Hafta 8 — Web xavfsizligi",s:"~4 soat",tag:"O'rta",tc:"blue",m:1,items:[["OWASP Top 10 nima?","25 daqiqa"],["SQL injection qanday ishlaydi?","35 daqiqa"],["XSS (Cross-Site Scripting)","30 daqiqa"],["Burp Suite: proxy, intercept","40 daqiqa"],["DVWA bilan amaliyot","45 daqiqa"],["Amaliy: web CTF masalasi","40 daqiqa"]],q:["SQL injection qanday test qilinadi?","Burp Suite proxysini qanday sozlayman?"]},
+  {t:"Hafta 9 — Penetration testing",s:"~4 soat",tag:"Ilg'or",tc:"coral",m:2,items:[["Pentest bosqichlari: recon, scan, exploit","30 daqiqa"],["Passive recon: OSINT, Maltego","35 daqiqa"],["Active recon: Nikto, Gobuster","30 daqiqa"],["Privilege escalation texnikalari","40 daqiqa"],["Pentest hisoboti yozish","30 daqiqa"],["HackTheBox / TryHackMe mashq","45 daqiqa"]],q:["Pentest bosqichlari nima?","Privilege escalation nima degani?"]},
+  {t:"Hafta 10 — Parol hujumlari",s:"~3 soat",tag:"Ilg'or",tc:"coral",m:2,items:[["Hash nima? MD5, SHA1, SHA256","20 daqiqa"],["Hashcat bilan parol crack","35 daqiqa"],["John the Ripper asoslari","30 daqiqa"],["Dictionary vs Brute-force hujum","25 daqiqa"],["Hydra bilan online brute-force","30 daqiqa"],["Amaliy: CTF parol topish","30 daqiqa"]],q:["Hashcat bilan MD5 hash qanday cracklanadi?","Hydra bilan SSH brute-force qanday qilinadi?"]},
+  {t:"Hafta 11 — Himoya (Blue Team)",s:"~3 soat",tag:"Ilg'or",tc:"coral",m:2,items:[["Firewall: iptables, ufw asoslari","25 daqiqa"],["IDS/IPS: Snort, Suricata","30 daqiqa"],["Log tahlili: /var/log, journalctl","25 daqiqa"],["Fail2Ban o'rnatish va sozlash","25 daqiqa"],["Zaifliklarni bartaraf etish","30 daqiqa"],["Incident response bosqichlari","25 daqiqa"]],q:["iptables bilan portni qanday bloklaman?","Fail2Ban qanday ishlaydi?"]},
+  {t:"Hafta 12 — Yakuniy loyiha",s:"~5 soat",tag:"Ilg'or",tc:"coral",m:2,items:[["To'liq pentest simulyatsiyasi","60 daqiqa"],["CTF musobaqasida ishtirok","60 daqiqa"],["Portfolio: GitHub'ga yuklash","45 daqiqa"],["Sertifikat yo'llari: CEH, CompTIA","30 daqiqa"],["Keyingi qadamlar va resurslar","30 daqiqa"],["Shaxsiy rivojlanish rejasi","30 daqiqa"]],q:["Qaysi sertifikat birinchi olish kerak?","CTF musobaqalariga qayerdan qo'shilaman?"]},
+];
+let activeMonth=0,activeLesson=null,checked={};
+function setMonth(i,btn){activeMonth=i;activeLesson=null;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.getElementById('lesson-panel').classList.remove('show');renderWeeks();}
+function renderWeeks(){const c=document.getElementById('weeks');c.innerHTML='';data.filter(d=>d.m===activeMonth).forEach(d=>{const wi=data.indexOf(d);const el=document.createElement('div');el.className='week-card'+(activeLesson===wi?' active':'');el.innerHTML=`<span class="tag tag-${d.tc}">${d.tag}</span><div class="week-title">${d.t}</div><div class="week-time">⏱ ${d.s}</div>`;el.onclick=()=>showLesson(wi);c.appendChild(el);});}
+function showLesson(wi){activeLesson=wi;const d=data[wi];document.getElementById('l-title').textContent=d.t;document.getElementById('l-sub').textContent=d.s;const el=document.getElementById('l-items');el.innerHTML='';d.items.forEach(([text,time],j)=>{const key=wi+'-'+j;const li=document.createElement('div');li.className='lesson-item';li.innerHTML=`<div class="checkbox${checked[key]?' done':''}" id="cb-${key}" onclick="toggle('${key}')">${checked[key]?'✓':''}</div><div><div class="item-text">${text}</div><div class="item-time">⏱ ${time}</div></div>`;el.appendChild(li);});document.getElementById('q1').textContent='💬 '+d.q[0];document.getElementById('q2').textContent='💬 '+d.q[1];document.getElementById('lesson-panel').classList.
+[18.05.2026 1:02] My portfolio: add('show');renderWeeks();updateStats();}
+function toggle(key){checked[key]=!checked[key];const cb=document.getElementById('cb-'+key);cb.className='checkbox'+(checked[key]?' done':'');cb.textContent=checked[key]?'✓':'';updateStats();}
+function updateStats(){const done=Object.values(checked).filter(Boolean).length;const pct=Math.round(done/36*100);document.getElementById('prog').style.width=pct+'%';document.getElementById('prog-text').textContent=done+' / 36 dars bajarildi ('+pct+'%)';document.getElementById('s-done').textContent=done;document.getElementById('s-week').textContent=Math.min(12,Math.floor(done/3)+1);}
+renderWeeks();
+</script>
 </body>
 </html>
