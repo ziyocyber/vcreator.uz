@@ -1,0 +1,2 @@
+# vcreator.uz
+for uzbekistan
