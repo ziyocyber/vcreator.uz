@@ -3,155 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VCreator.uz</title>
+    <title>VCreator.uz — O'zbekiston eng yaxshi dizaynerlarini toping</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #0a0a0a;
-            color: white;
-        }
+        .hero-main { padding: 120px 20px 70px; }
+        .hero-main h1 { font-size: 58px; line-height: 1.1; }
+        .hero-main p { font-size: 20px; margin-bottom: 36px; }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 60px;
-            background: #111;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #7C3AED;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 15px;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 120px 20px;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: #7C3AED;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #aaa;
-            margin-bottom: 40px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-        }
-
-        .btn-primary {
-            background: #7C3AED;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 16px;
-            border: 2px solid #333;
-        }
+        .buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
         .stats {
             display: flex;
             justify-content: center;
             gap: 60px;
-            padding: 60px;
-            background: #111;
-        }
-
-        .stat h2 {
-            font-size: 40px;
-            color: #7C3AED;
-            font-weight: 800;
-        }
-
-        .stat p { color: #aaa; margin-top: 6px; }
-
-        .features {
-            padding: 80px 60px;
-            text-align: center;
-        }
-
-        .features h2 {
-            font-size: 36px;
-            margin-bottom: 50px;
-        }
-
-        .cards {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
+            padding: 50px 20px;
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
             flex-wrap: wrap;
         }
+        .stat h2 { font-size: 38px; color: var(--purple); font-weight: 900; }
+        .stat p { color: var(--text2); margin-top: 4px; font-size: 14px; }
 
-        .card {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 16px;
-            padding: 36px;
-            width: 280px;
+        .features { padding: 80px 20px; text-align: center; }
+        .features h2 { font-size: 34px; font-weight: 800; margin-bottom: 48px; }
+        .feat-cards {
+            display: flex;
+            gap: 22px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
         }
+        .feat-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 34px;
+            width: 280px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .feat-card:hover { transform: translateY(-4px); border-color: #333; }
+        .feat-card .icon { font-size: 38px; margin-bottom: 14px; }
+        .feat-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .feat-card p { color: var(--text2); font-size: 14px; line-height: 1.6; }
 
-        .card .icon { font-size: 40px; margin-bottom: 16px; }
-        .card h3 { font-size: 20px; margin-bottom: 10px; }
-        .card p { color: #aaa; font-size: 14px; line-height: 1.6; }
+        .how { background: var(--bg2); padding: 80px 20px; text-align: center; border-top: 1px solid var(--border); }
+        .how h2 { font-size: 34px; font-weight: 800; margin-bottom: 48px; }
+        .steps { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
+        .step { width: 210px; }
+        .step-num {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: var(--purple);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 800;
+            margin: 0 auto 14px;
+        }
+        .step h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+        .step p { color: var(--text2); font-size: 13px; line-height: 1.6; }
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #555;
-            border-top: 1px solid #222;
+        .cta {
+            text-align: center; padding: 80px 20px;
+            background: linear-gradient(135deg, #7C3AED15, #3B82F615);
+            border-top: 1px solid var(--border);
+        }
+        .cta h2 { font-size: 34px; font-weight: 800; margin-bottom: 14px; }
+        .cta p { color: var(--text2); margin-bottom: 28px; font-size: 17px; }
+
+        @media (max-width: 768px) {
+            .hero-main { padding: 70px 16px 50px; }
+            .hero-main h1 { font-size: 32px; }
+            .hero-main p { font-size: 16px; }
+            .stats { gap: 30px; }
+            .feat-card { width: 100%; max-width: 340px; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo">VCreator.uz</div>
-    <div class="nav-links">
-        <a href="#">Bosh sahifa</a>
-        <a href="#">Dizaynerlar</a>
-        <a href="#">Loyihalar</a>
-        <a href="#">Bog'lanish</a>
+    <a href="index.html" class="logo">VCreator.uz</a>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Bosh sahifa</a>
+        <a href="dizaynerlar.html">Dizaynerlar</a>
+        <a href="loyihalar.html">Loyihalar</a>
+        <a href="signup.html" class="btn-nav">Kirish</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
     </div>
 </nav>
 
-<section class="hero">
+<section class="hero hero-main">
     <h1>O'zbekiston eng yaxshi<br><span>dizaynerlarini toping</span></h1>
     <p>Mijozlar va kreativ dizaynerlarni bog'lovchi platforma</p>
     <div class="buttons">
-        <a href="#" class="btn-primary">Dizayner topish</a>
-        <a href="#" class="btn-secondary">Ro'yxatdan o'tish</a>
+        <a href="dizaynerlar.html" class="btn-primary">Dizayner topish</a>
+        <a href="loyiha-joylash.html" class="btn-secondary">Loyiha joylash</a>
     </div>
 </section>
 
@@ -163,186 +111,18 @@
 
 <section class="features">
     <h2>Nima uchun VCreator?</h2>
-    <div class="cards">
-        <div class="card">
+    <div class="feat-cards">
+        <div class="feat-card">
             <div class="icon">🎨</div>
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VCreator.uz</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #0a0a0a;
-            color: white;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 60px;
-            background: #111;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #7C3AED;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 15px;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 120px 20px;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: #7C3AED;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #aaa;
-            margin-bottom: 40px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-        }
-
-        .btn-primary {
-            background: #7C3AED;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 16px;
-            border: 2px solid #333;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            padding: 60px;
-            background: #111;
-        }
-
-        .stat h2 {
-            font-size: 40px;
-            color: #7C3AED;
-            font-weight: 800;
-        }
-
-        .stat p { color: #aaa; margin-top: 6px; }
-
-        .features {
-            padding: 80px 60px;
-            text-align: center;
-        }
-
-        .features h2 {
-            font-size: 36px;
-            margin-bottom: 50px;
-        }
-
-        .cards {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 16px;
-            padding: 36px;
-            width: 280px;
-        }
-
-        .card .icon { font-size: 40px; margin-bottom: 16px; }
-        .card h3 { font-size: 20px; margin-bottom: 10px; }
-        .card p { color: #aaa; font-size: 14px; line-height: 1.6; }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #555;
-            border-top: 1px solid #222;
-        }
-    </style>
-</head>
-<body>
-
-<nav>
-    <div class="logo">VCreator.uz</div>
-    <div class="nav-links">
-        <a href="#">Bosh sahifa</a>
-        <a href="#">Dizaynerlar</a>
-        <a href="#">Loyihalar</a>
-        <a href="#">Bog'lanish</a>
-    </div>
-</nav>
-
-<section class="hero">
-    <h1>O'zbekiston eng yaxshi<br><span>dizaynerlarini toping</span></h1>
-    <p>Mijozlar va kreativ dizaynerlarni bog'lovchi platforma</p>
-    <div class="buttons">
-        <a href="#" class="btn-primary">Dizayner topish</a>
-        <a href="#" class="btn-secondary">Ro'yxatdan o'tish</a>
-    </div>
-</section>
-
-<section class="stats">
-    <div class="stat"><h2>500+</h2><p>Dizaynerlar</p></div>
-    <div class="stat"><h2>1200+</h2><p>Bajarilgan loyihalar</p></div>
-    <div class="stat"><h2>98%</h2><p>Mijozlar mamnuniyati</p></div>
-</section>
-
-<section class="features">
-    <h2>Nima uchun VCreator?</h2>
-    <div class="cards">
-        <div class="card">
-            <div class="icon">🎨</div>
- <h3>Eng yaxshi dizaynerlar</h3>
-            <p>Tekshirilgan va tajribali O'zbek dizaynerlari bilan ishlang</p>
+            <h3>Eng yaxshi dizaynerlar</h3>
+            <p>Tekshirilgan O'zbek dizaynerlari bilan ishlang</p>
         </div>
-        <div class="card">
+        <div class="feat-card">
             <div class="icon">⚡</div>
             <h3>Tez va qulay</h3>
             <p>Loyihangizni joylashtiring, bir kunda dizayner toping</p>
         </div>
-        <div class="card">
+        <div class="feat-card">
             <div class="icon">🔒</div>
             <h3>Xavfsiz to'lov</h3>
             <p>Payme va Click orqali xavfsiz to'lov tizimi</p>
@@ -350,9 +130,46 @@
     </div>
 </section>
 
+<section class="how">
+    <h2>Qanday ishlaydi?</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <h3>Ro'yxatdan o'ting</h3>
+            <p>Mijoz yoki dizayner sifatida ro'yxatdan o'ting</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <h3>Loyiha joylang</h3>
+            <p>Mijoz loyihasini tasvirlab, byudjetini belgilaydi</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <h3>Dizayner toping</h3>
+            <p>Eng mos dizayner arizasini ko'rib, tanlaysiz</p>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <h3>To'lov qiling</h3>
+            <p>Ish tugagach xavfsiz to'lov tizimi orqali to'lang</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Bugun boshlang! 🚀</h2>
+    <p>O'zbekistonning eng yaxshi kreativ platformasiga qo'shiling</p>
+    <a href="signup.html" class="btn-primary">Bepul ro'yxatdan o'tish</a>
+</section>
+
 <footer>
     <p>© 2026 VCreator.uz — Barcha huquqlar himoyalangan</p>
 </footer>
 
+<script>
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+</script>
 </body>
 </html>
