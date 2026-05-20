@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+[20.05.2026 17:16] My portfolio: <!DOCTYPE html>
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +6,7 @@
     <title>VCreator.uz</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #0a0a0a;
-            color: white;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: white; }
 
         nav {
             display: flex;
@@ -19,118 +14,75 @@
             align-items: center;
             padding: 20px 60px;
             background: #111;
+            border-bottom: 1px solid #222;
         }
+        .logo { font-size: 24px; font-weight: bold; color: #7C3AED; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 30px; font-size: 15px; }
+        .nav-links a:hover { color: #7C3AED; }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #7C3AED;
-        }
+        .hero { text-align: center; padding: 120px 20px 60px; }
+        .hero h1 { font-size: 56px; font-weight: 800; margin-bottom: 20px; }
+        .hero h1 span { color: #7C3AED; }
+        .hero p { font-size: 20px; color: #aaa; margin-bottom: 40px; }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 15px;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 120px 20px;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: #7C3AED;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #aaa;
-            margin-bottom: 40px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-        }
-
+        .buttons { display: flex; gap: 16px; justify-content: center; }
         .btn-primary {
-            background: #7C3AED;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
+            background: #7C3AED; color: white;
+            padding: 14px 32px; border-radius: 8px;
+            text-decoration: none; font-size: 16px; font-weight: 600;
         }
-
         .btn-secondary {
-            background: transparent;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 16px;
+            background: transparent; color: white;
+            padding: 14px 32px; border-radius: 8px;
+            text-decoration: none; font-size: 16px;
             border: 2px solid #333;
         }
 
         .stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            padding: 60px;
-            background: #111;
+            display: flex; justify-content: center;
+            gap: 60px; padding: 60px;
+            background: #111; margin-top: 60px;
         }
-
-        .stat h2 {
-            font-size: 40px;
-            color: #7C3AED;
-            font-weight: 800;
-        }
-
+        .stat h2 { font-size: 40px; color: #7C3AED; font-weight: 800; }
         .stat p { color: #aaa; margin-top: 6px; }
 
-        .features {
-            padding: 80px 60px;
-            text-align: center;
-        }
-
-        .features h2 {
-            font-size: 36px;
-            margin-bottom: 50px;
-        }
-
-        .cards {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
+        .features { padding: 80px 60px; text-align: center; }
+        .features h2 { font-size: 36px; margin-bottom: 50px; }
+        .cards { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
         .card {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 16px;
-            padding: 36px;
-            width: 280px;
+            background: #111; border: 1px solid #222;
+            border-radius: 16px; padding: 36px; width: 280px;
+            transition: transform 0.2s;
         }
-
+        .card:hover { transform: translateY(-4px); }
         .card .icon { font-size: 40px; margin-bottom: 16px; }
         .card h3 { font-size: 20px; margin-bottom: 10px; }
         .card p { color: #aaa; font-size: 14px; line-height: 1.6; }
 
+        .how { background: #111; padding: 80px 60px; text-align: center; }
+        .how h2 { font-size: 36px; margin-bottom: 50px; }
+        .steps { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+        .step { width: 220px; }
+        .step-num {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: #7C3AED; display: flex;
+            align-items: center; justify-content: center;
+            font-size: 20px; font-weight: 800;
+            margin: 0 auto 16px;
+        }
+        .step h3 { font-size: 17px; margin-bottom: 8px; }
+        .step p { color: #aaa; font-size: 13px; line-height: 1.6; }
+
+        .cta {
+            text-align: center; padding: 80px 20px;
+            background: linear-gradient(135deg, #7C3AED22, #3B82F622);
+        }
+        .cta h2 { font-size: 36px; margin-bottom: 16px; }
+        .cta p { color: #aaa; margin-bottom: 30px; font-size: 18px; }
+
         footer {
-            text-align: center;
-            padding: 30px;
-            color: #555;
-            border-top: 1px solid #222;
+            text-align: center; padding: 30px;
+            color: #555; border-top: 1px solid #222;
         }
     </style>
 </head>
@@ -139,19 +91,19 @@
 <nav>
     <div class="logo">VCreator.uz</div>
     <div class="nav-links">
-        <a href="#">Bosh sahifa</a>
-        <a href="#">Dizaynerlar</a>
-        <a href="#">Loyihalar</a>
-        <a href="#">Bog'lanish</a>
+        <a href="index.html" style="color:#7C3AED">Bosh sahifa</a>
+        <a href="dizaynerlar.html">Dizaynerlar</a>
+        <a href="loyihalar.html">Loyihalar</a>
+        <a href="signup.html">Kirish</a>
     </div>
 </nav>
-
-<section class="hero">
+[20.05.2026 17:16] My portfolio: <section class="hero">
     <h1>O'zbekiston eng yaxshi<br><span>dizaynerlarini toping</span></h1>
     <p>Mijozlar va kreativ dizaynerlarni bog'lovchi platforma</p>
     <div class="buttons">
-        <a href="#" class="btn-primary">Dizayner topish</a>
-        <a href="#" class="btn-secondary">Ro'yxatdan o'tish</a>
+        <a href="dizaynerlar.
+ class="btn-primary">Dizayner topish</a>
+        <a href="loyihalar.html" class="btn-secondary">Loyiha joylash</a>
     </div>
 </section>
 
@@ -166,11 +118,11 @@
     <div class="cards">
         <div class="card">
             <div class="icon">🎨</div>
- <h3>Eng yaxshi dizaynerlar</h3>
-            <p>Tekshirilgan va tajribali O'zbek dizaynerlari bilan ishlang</p>
+            <h3>Eng yaxshi dizaynerlar</h3>
+            <p>Tekshirilgan O'zbek dizaynerlari bilan ishlang</p>
         </div>
         <div class="card">
-            <div class="icon">⚡</div>
+            <div class="icon">⚡️</div>
             <h3>Tez va qulay</h3>
             <p>Loyihangizni joylashtiring, bir kunda dizayner toping</p>
         </div>
@@ -180,6 +132,38 @@
             <p>Payme va Click orqali xavfsiz to'lov tizimi</p>
         </div>
     </div>
+</section>
+
+<section class="how">
+    <h2>Qanday ishlaydi?</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <h3>Ro'yxatdan o'ting</h3>
+            <p>Mijoz yoki dizayner sifatida ro'yxatdan o'ting</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <h3>Loyiha joylang</h3>
+            <p>Mijoz loyihasini tasvirlab, byudjetini belgilaydi</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <h3>Dizayner toping</h3>
+            <p>Eng mos dizayner arizasini ko'rib, tanlaysiz</p>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <h3>To'lov qiling</h3>
+            <p>Ish tugagach xavfsiz to'lov tizimi orqali to'lang</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Bugun boshlang! 🚀</h2>
+    <p>O'zbekistonning eng yaxshi kreativ platformasiga qo'shiling</p>
+    <a href="signup.html" class="btn-primary">Bepul ro'yxatdan o'tish</a>
 </section>
 
 <footer>
