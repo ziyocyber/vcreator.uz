@@ -1,17 +1,160 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VCreator.uz — O'zbekiston eng yaxshi dizaynerlarini toping</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        .hero-main { padding: 120px 20px 70px; }
-        .hero-main h1 { font-size: 58px; line-height: 1.1; }
-        .hero-main p { font-size: 20px; margin-bottom: 36px; }
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --purple: #7C3AED;
+            --purple-light: #9D65F5;
+            --bg: #0a0a0a;
+            --bg2: #111111;
+            --bg3: #161616;
+            --border: #222222;
+            --text: #ffffff;
+            --text2: #888888;
+        }
 
+        /* ===== RESET ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* ===== NAV ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 60px;
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--purple);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text2);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--text); }
+
+        .btn-nav {
+            background: var(--purple) !important;
+            color: white !important;
+            padding: 9px 22px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+            transition: background 0.2s !important;
+        }
+
+        .btn-nav:hover { background: var(--purple-light) !important; }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            text-align: center;
+        }
+
+        .hero-main { padding: 120px 20px 70px; }
+
+        .hero-main h1 {
+            font-size: 58px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-main h1 span { color: var(--purple); }
+
+        .hero-main p {
+            font-size: 20px;
+            color: var(--text2);
+            margin-bottom: 36px;
+        }
+
+        /* ===== BUTTONS ===== */
         .buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
+        .btn-primary {
+            background: var(--purple);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 9px;
+            font-size: 16px;
+            font-weight: 700;
+            transition: background 0.2s, transform 0.15s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--purple-light);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            padding: 14px 32px;
+            border-radius: 9px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 2px solid var(--border);
+            transition: border-color 0.2s, transform 0.15s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            border-color: #444;
+            transform: translateY(-1px);
+        }
+
+        /* ===== STATS ===== */
         .stats {
             display: flex;
             justify-content: center;
@@ -21,12 +164,30 @@
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             flex-wrap: wrap;
+            text-align: center;
         }
-        .stat h2 { font-size: 38px; color: var(--purple); font-weight: 900; }
-        .stat p { color: var(--text2); margin-top: 4px; font-size: 14px; }
 
+        .stat h2 {
+            font-size: 38px;
+            color: var(--purple);
+            font-weight: 900;
+        }
+
+        .stat p {
+            color: var(--text2);
+            margin-top: 4px;
+            font-size: 14px;
+        }
+
+        /* ===== FEATURES ===== */
         .features { padding: 80px 20px; text-align: center; }
-        .features h2 { font-size: 34px; font-weight: 800; margin-bottom: 48px; }
+
+        .features h2 {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 48px;
+        }
+
         .feat-cards {
             display: flex;
             gap: 22px;
@@ -35,6 +196,7 @@
             max-width: 1000px;
             margin: 0 auto;
         }
+
         .feat-card {
             background: var(--bg2);
             border: 1px solid var(--border);
@@ -42,40 +204,96 @@
             padding: 34px;
             width: 280px;
             transition: transform 0.2s, border-color 0.2s;
+            text-align: left;
         }
+
         .feat-card:hover { transform: translateY(-4px); border-color: #333; }
+
         .feat-card .icon { font-size: 38px; margin-bottom: 14px; }
+
         .feat-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+
         .feat-card p { color: var(--text2); font-size: 14px; line-height: 1.6; }
 
-        .how { background: var(--bg2); padding: 80px 20px; text-align: center; border-top: 1px solid var(--border); }
+        /* ===== HOW IT WORKS ===== */
+        .how {
+            background: var(--bg2);
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
         .how h2 { font-size: 34px; font-weight: 800; margin-bottom: 48px; }
+
         .steps { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
+
         .step { width: 210px; }
+
         .step-num {
-            width: 48px; height: 48px; border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
             background: var(--purple);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 18px; font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 800;
             margin: 0 auto 14px;
         }
+
         .step h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
         .step p { color: var(--text2); font-size: 13px; line-height: 1.6; }
 
+        /* ===== CTA ===== */
         .cta {
-            text-align: center; padding: 80px 20px;
+            text-align: center;
+            padding: 80px 20px;
             background: linear-gradient(135deg, #7C3AED15, #3B82F615);
             border-top: 1px solid var(--border);
         }
+
         .cta h2 { font-size: 34px; font-weight: 800; margin-bottom: 14px; }
         .cta p { color: var(--text2); margin-bottom: 28px; font-size: 17px; }
 
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text2);
+            border-top: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        /* ===== MOBILE ===== */
         @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 61px;
+                left: 0; right: 0;
+                background: var(--bg2);
+                flex-direction: column;
+                padding: 20px;
+                gap: 16px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.open { display: flex; }
+
+            .hamburger { display: flex; }
+
             .hero-main { padding: 70px 16px 50px; }
-            .hero-main h1 { font-size: 32px; }
+            .hero-main h1 { font-size: 32px; letter-spacing: -0.5px; }
             .hero-main p { font-size: 16px; }
+
             .stats { gap: 30px; }
+
             .feat-card { width: 100%; max-width: 340px; }
+
+            .step { width: 160px; }
         }
     </style>
 </head>
@@ -170,196 +388,6 @@
     function toggleMenu() {
         document.getElementById('navLinks').classList.toggle('open');
     }
-</script> 
-</body>
-</html>
-[20.05.2026 17:31] kamolov🌗: <!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VCreator.uz</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #0a0a0a;
-            color: white;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 60px;
-            background: #111;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #7C3AED;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 15px;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 120px 20px;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: #7C3AED;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #aaa;
-            margin-bottom: 40px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-        }
-
-        .btn-primary {
-            background: #7C3AED;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 16px;
-            border: 2px solid #333;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            padding: 60px;
-            background: #111;
-        }
-
-        .stat h2 {
-            font-size: 40px;
-            color: #7C3AED;
-            font-weight: 800;
-        }
-
-        .stat p { color: #aaa; margin-top: 6px; }
-
-        .features {
-            padding: 80px 60px;
-            text-align: center;
-        }
-
-        .features h2 {
-            font-size: 36px;
-            margin-bottom: 50px;
-        }
-
-        .cards {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 16px;
-            padding: 36px;
-            width: 280px;
-        }
-
-        .card .icon { font-size: 40px; margin-bottom: 16px; }
-        .card h3 { font-size: 20px; margin-bottom: 10px; }
-        .card p { color: #aaa; font-size: 14px; line-height: 1.6; }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #555;
-            border-top: 1px solid #222;
-        }
-    </style>
-</head>
-<body>
-
-<nav>
-    <div class="logo">VCreator.uz</div>
-    <div class="nav-links">
-        <a href="#">Bosh sahifa</a>
-        <a href="#">Dizaynerlar</a>
-        <a href="#">Loyihalar</a>
-        <a href="#">Bog'lanish</a>
-    </div>
-</nav>
-
-<section class="hero">
-    <h1>O'zbekiston eng yaxshi<br><span>dizaynerlarini toping</span></h1>
-    <p>Mijozlar va kreativ dizaynerlarni bog'lovchi platforma</p>
-    <div class="buttons">
-        <a href="#" class="btn-primary">Dizayner topish</a>
-        <a href="#" class="btn-secondary">Ro'yxatdan o'tish</a>
-    </div>
-</section>
-
-<section class="stats">
-    <div class="stat"><h2>500+</h2><p>Dizaynerlar</p></div>
-    <div class="stat"><h2>1200+</h2><p>Bajarilgan loyihalar</p></div>
-    <div class="stat"><h2>98%</h2><p>Mijozlar mamnuniyati</p></div>
-</section>
-
-<section class="features">
-    <h2>Nima uchun VCreator?</h2>
-    <div class="cards">
-        <div class="card">
-            <div class="icon">🎨</div>
-[20.05.2026 17:31] kamolov🌗: <h3>Eng yaxshi dizaynerlar</h3>
-            <p>Tekshirilgan va tajribali O'zbek dizaynerlari bilan ishlang</p>
-        </div>
-        <div class="card">
-            <div class="icon">⚡</div>
-            <h3>Tez va qulay</h3>
-            <p>Loyihangizni joylashtiring, bir kunda dizayner toping</p>
-        </div>
-        <div class="card">
-            <div class="icon">🔒</div>
-            <h3>Xavfsiz to'lov</h3>
-            <p>Payme va Click orqali xavfsiz to'lov tizimi</p>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 VCreator.uz — Barcha huquqlar himoyalangan</p>
-</footer>
-
+</script>
 </body>
 </html>
