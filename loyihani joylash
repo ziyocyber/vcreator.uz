@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loyiha Joylash — VCreator.uz</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: #111;
+            border-bottom: 1px solid #222;
+        }
+        .logo { font-size: 24px; font-weight: bold; color: #7C3AED; text-decoration: none; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 30px; font-size: 15px; }
+        .nav-links a:hover { color: #7C3AED; }
+
+        .page-hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+        .page-hero h1 { font-size: 38px; font-weight: 800; }
+        .page-hero h1 span { color: #7C3AED; }
+        .page-hero p { color: #aaa; margin-top: 10px; font-size: 16px; }
+
+        /* STEPS INDICATOR */
+        .steps-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .step-dot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: #555;
+            transition: all 0.3s;
+        }
+
+        .step-circle.active {
+            background: #7C3AED;
+            border-color: #7C3AED;
+            color: white;
+        }
+
+        .step-circle.done {
+            background: #10B981;
+            border-color: #10B981;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 11px;
+            color: #555;
+            white-space: nowrap;
+        }
+
+        .step-label.active { color: #7C3AED; }
+
+        .step-line {
+            width: 80px;
+            height: 2px;
+            background: #222;
+            margin-bottom: 20px;
+        }
+
+        .step-line.done { background: #10B981; }
+
+        /* FORM */
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .form-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .form-section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group { margin-bottom: 22px; }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        label span { color: #EF4444; }
+
+        input, textarea, select {
+            width: 100%;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 13px 16px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        input:focus, textarea:focus, select:focus { border-color: #7C3AED; }
+        input::placeholder, textarea::placeholder { color: #444; }
+
+        textarea { resize: vertical; min-height: 120px; }
+
+        select option { background: #1a1a1a; }
+
+        /* CATEGORY SELECTOR */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .cat-btn {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 14px 10px;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+            font-size: 13px;
+        }
+
+        .cat-btn .cat-icon { font-size: 22px; display: block; margin-bottom: 6px; }
+        .cat-btn:hover { border-color: #7C3AED; }
+        .cat-btn.active { border-color: #7C3AED; background: #7C3AED22; }
+
+        /* BUDGET */
+        .budget-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .budget-btn {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 14px;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .budget-btn .b-amount { font-size: 16px; font-weight: 700; color: #10B981; }
+        .budget-btn .b-label { font-size: 11px; color: #666; margin-top: 2px; }
+        .budget-btn.active { border-color: #7C3AED; background: #7C3AED22; }
+
+        /* DEADLINE */
+        .deadline-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .deadline-btn {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 30px;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .deadline-btn.active { border-color: #7C3AED; background: #7C3AED22; color: #7C3AED; }
+        .deadline-btn.urgent { border-color: #EF4444; }
+        .deadline-btn.urgent.active { background: #EF444422; color: #EF4444; }
+
+        /* FILE UPLOAD */
+        .upload-area {
+            border: 2px dashed #333;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .upload-area:hover { border-color: #7C3AED; }
+        .upload-area .upload-icon { font-size: 36px; margin-bottom: 10px; }
+        .upload-area p { color: #666; font-size: 14px; }
+        .upload-area span { color: #7C3AED; }
+
+        /* FORM BUTTONS */
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn-submit {
+            flex: 1;
+            background: #7C3AED;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover { background: #6D28D9; }
+
+        .btn-back {
+            background: transparent;
+            color: white;
+            border: 1px solid #333;
+            padding: 15px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .btn-back:hover { border-color: #7C3AED; }
+
+        /* SUCCESS */
+        .success-box {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon { font-size: 72px; margin-bottom: 20px; }
+        .success-box h2 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+        .success-box p { color: #aaa; font-size: 16px; margin-bottom: 30px; }
+
+        .btn-primary {
+            background: #7C3AED;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            border-top: 1px solid #222;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">VCreator.uz</a>
+    <div class="nav-links">
+        <a href="index.html">Bosh sahifa</a>
+        <a href="dizaynerlar.html">Dizaynerlar</a>
+        <a href="loyihalar.html" style="color:#7C3AED">Loyihalar</a>
+        <a href="signup.html">Kirish</a>
+    </div>
+</nav>
+
+<div class="page-hero">
+    <h1>Loyiha <span>joylash</span></h1>
+    <p>Loyihangizni tasvirlab bering, dizaynerlar ariza yuborishsin</p>
+</div>
+
+<!-- STEPS -->
+<div class="steps-indicator">
+    <div class="step-dot">
+        <div class="step-circle active" id="s1">1</div>
+        <div class="step-label active">Loyiha ma'lumoti</div>
+    </div>
+    <div class="step-line" id="l1"></div>
+    <div class="step-dot">
+        <div class="step-circle" id="s2">2</div>
+        <div class="step-label" id="sl2">Byudjet & muddat</div>
+    </div>
+    <div class="step-line" id="l2"></div>
+    <div class="step-dot">
+        <div class="step-circle" id="s3">3</div>
+        <div class="step-label" id="sl3">Yuborish</div>
+    </div>
+</div>
+
+<div class="form-container">
+
+    <!-- STEP 1 -->
+    <div id="step1" class="form-card">
+        <div class="form-section-title">📋 Loyiha haqida</div>
+
+        <div class="form-group">
+            <label>Loyiha nomi <span>*</span></label>
+            <input type="text" id="title" placeholder="Masalan: Restoran uchun logo dizayn">
+        </div>
+
+        <div class="form-group">
+            <label>Loyiha kategoriyasi <span>*</span></label>
+            <div class="category-grid">
+                <div class="cat-btn active" onclick="selectCat(this)">
+                    <span class="cat-icon">🎨</span> Logo dizayn
+                </div>
+                <div class="cat-btn" onclick="selectCat(this)">
+                    <span class="cat-icon">📱</span> UI/UX
+                </div>
+                <div class="cat-btn" onclick="selectCat(this)">
+                    <span class="cat-icon">💼</span> Brending
+                </div>
+                <div class="cat-btn" onclick="selectCat(this)">
+                    <span class="cat-icon">🖼️</span> Illustratsiya
+                </div>
+                <div class="cat-btn" onclick="selectCat(this)">
+                    <span class="cat-icon">🎬</span> Motion
+                </div>
+                <div class="cat-btn" onclick="selectCat(this)">
+                    <span class="cat-icon">📸</span> Social Media
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Loyiha tavsifi <span>*</span></label>
+            <textarea id="description" placeholder="Loyihangizni batafsil tasvirlab bering. Nima kerak, qanday uslubda, maqsadli auditoriya..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Fayllar yuklash (ixtiyoriy)</label>
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <div class="upload-icon">📎</div>
+                <p>Referens rasmlar, brief yoki boshqa fayllarni yuklang</p>
+                <p><span>Faylni tanlang</span> yoki bu yerga tashlang</p>
+            </div>
+            <input type="file" id="fileInput" style="display:none" multiple>
+        </div>
+
+        <div class="form-actions">
+            <button class="btn-submit" onclick="goToStep2()">Davom etish →</button>
+        </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="form-card" style="display:none">
+        <div class="form-section-title">💰 Byudjet va muddat</div>
+
+        <div class="form-group">
+            <label>Byudjet <span>*</span></label>
+            <div class="budget-options">
+                <div class="budget-btn active" onclick="selectBudget(this)">
+                    <div class="b-amount">100 000 – 300 000</div>
+                    <div class="b-label">so'm • Kichik loyiha</div>
+                </div>
+                <div class="budget-btn" onclick="selectBudget(this)">
+                    <div class="b-amount">300 000 – 700 000</div>
+                    <div class="b-label">so'm • O'rta loyiha</div>
+                </div>
+                <div class="budget-btn" onclick="selectBudget(this)">
+                    <div class="b-amount">700 000 – 1 500 000</div>
+                    <div class="b-label">so'm • Katta loyiha</div>
+                </div>
+                <div class="budget-btn" onclick="selectBudget(this)">
+                    <div class="b-amount">1 500 000+</div>
+                    <div class="b-label">so'm • Premium loyiha</div>
+                </div>
+            </div>
+            <input type="text" placeholder="Yoki aniq miqdor kiriting (so'm)">
+        </div>
+
+        <div class="form-group">
+            <label>Muddati <span>*</span></label>
+            <div class="deadline-options">
+                <div class="deadline-btn urgent active" onclick="selectDeadline(this)">🔴 1–3 kun (Shoshilinch)</div>
+                <div class="deadline-btn" onclick="selectDeadline(this)">1 hafta</div>
+                <div class="deadline-btn" onclick="selectDeadline(this)">2 hafta</div>
+                <div class="deadline-btn" onclick="selectDeadline(this)">1 oy</div>
+                <div class="deadline-btn" onclick="selectDeadline(this)">Kelishiladi</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Aloqa ma'lumotlari <span>*</span></label>
+            <input type="text" placeholder="Telegram username: @username" style="margin-bottom:10px">
+            <input type="tel" placeholder="Telefon: +998 90 000 00 00">
+        </div>
+
+        <div class="form-actions">
+            <button class="btn-back" onclick="goToStep1()">← Orqaga</button>
+            <button class="btn-submit" onclick="submitForm()">Loyiha joylash 🚀</button>
+        </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="success" class="form-card success-box">
+        <div class="success-icon">🎉</div>
+        <h2>Loyiha muvaffaqiyatli joylandi!</h2>
+        <p>Dizaynerlar sizning loyihangizni ko'rib, tez orada ariza yuborishadi. Telegram orqali xabardor qilinasiz.</p>
+        <a href="loyihalar.html" class="btn-primary">Loyihalarni ko'rish</a>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 VCreator.uz — Barcha huquqlar himoyalangan</p>
+</footer>
+
+<script>
+    function selectCat(el) {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    function selectBudget(el) {
+        document.querySelectorAll('.budget-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    function selectDeadline(el) {
+        document.querySelectorAll('.deadline-btn').forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    function goToStep2() {
+        const title = document.getElementById('title').value;
+        const desc = document.getElementById('description').value;
+        if (!title || !desc) {
+            alert('Iltimos, loyiha nomi va tavsifini to\'ldiring!');
+            return;
+        }
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+
+        document.getElementById('s1').className = 'step-circle done';
+        document.getElementById('s1').textContent = '✓';
+        document.getElementById('l1').className = 'step-line done';
+        document.getElementById('s2').className = 'step-circle active';
+        document.getElementById('sl2').className = 'step-label active';
+    }
+
+    function goToStep1() {
+        document.getElementById('step2').style.display = 'none';
+        document.getElementById('step1').style.display = 'block';
+        document.getElementById('s1').className = 'step-circle active';
+        document.getElementById('s1').textContent = '1';
+        document.getElementById('l1').className = 'step-line';
+        document.getElementById('s2').className = 'step-circle';
+        document.getElementById('sl2').className = 'step-label';
+    }
+
+    function submitForm() {
+        document.getElementById('step2').style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+
+        document.getElementById('s2').className = 'step-circle done';
+        document.getElementById('s2').textContent = '✓';
+        document.getElementById('l2').className = 'step-line done';
+        document.getElementById('s3').className = 'step-circle done';
+        document.getElementById('s3').textContent = '✓';
+    }
+</script>
+
+</body>
+</html>
