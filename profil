@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil — VCreator.uz</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 60px;
+            background: #111;
+            border-bottom: 1px solid #222;
+        }
+        .logo { font-size: 22px; font-weight: 800; color: #7C3AED; text-decoration: none; }
+        .nav-links a { color: #888; text-decoration: none; margin-left: 28px; font-size: 15px; }
+        .nav-links a:hover { color: white; }
+        .btn-logout {
+            background: transparent;
+            color: #ff6b6b;
+            border: 1px solid #ff6b6b33;
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 28px;
+            transition: all 0.2s;
+        }
+        .btn-logout:hover { background: #ff6b6b15; }
+
+        .loading {
+            text-align: center;
+            padding: 100px 20px;
+            color: #888;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7C3AED, #3B82F6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .profile-info h1 { font-size: 24px; font-weight: 800; margin-bottom: 4px; }
+        .profile-info .email { color: #888; font-size: 14px; margin-bottom: 8px; }
+        .role-badge {
+            display: inline-block;
+            background: #7C3AED20;
+            border: 1px solid #7C3AED40;
+            color: #7C3AED;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+        .stat-card h2 { font-size: 28px; color: #7C3AED; font-weight: 900; }
+        .stat-card p { color: #888; font-size: 13px; margin-top: 4px; }
+
+        .section {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+        .section h2 { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #888; font-size: 14px; }
+        .info-value { font-size: 14px; font-weight: 600; }
+
+        @media (max-width: 600px) {
+            nav { padding: 16px 20px; }
+            .profile-header { flex-direction: column; text-align: center; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">VCreator.uz</a>
+    <div class="nav-links">
+        <a href="index.html">Bosh sahifa</a>
+        <a href="dizaynerlar.html">Dizaynerlar</a>
+        <button class="btn-logout" onclick="logout()">Chiqish</button>
+    </div>
+</nav>
+
+<div id="loading" class="loading">Yuklanmoqda...</div>
+
+<div id="profileContent" style="display:none">
+    <div class="container">
+        <div class="profile-header">
+            <div class="avatar" id="avatarEl">?</div>
+            <div class="profile-info">
+                <h1 id="nameEl">—</h1>
+                <div class="email" id="emailEl">—</div>
+                <span class="role-badge" id="roleEl">—</span>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>Loyihalar</p>
+            </div>
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>Sharhlar</p>
+            </div>
+            <div class="stat-card">
+                <h2>—</h2>
+                <p>Reyting</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Shaxsiy ma'lumotlar</h2>
+            <div class="info-row">
+                <span class="info-label">Ism</span>
+                <span class="info-value" id="infoName">—</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email</span>
+                <span class="info-value" id="infoEmail">—</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Rol</span>
+                <span class="info-value" id="infoRole">—</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Ro'yxatdan o'tgan</span>
+                <span class="info-value" id="infoDate">—</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyC9Ex4rMhqqP5z48mdFwijsGZW-BJIv2Tw",
+        authDomain: "vcreator-a854f.firebaseapp.com",
+        projectId: "vcreator-a854f",
+        storageBucket: "vcreator-a854f.firebasestorage.app",
+        messagingSenderId: "648815678229",
+        appId: "1:648815678229:web:404b25bed0514eb8b08f1c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        try {
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            const data = userDoc.exists() ? userDoc.data() : {};
+
+            const name = data.name || user.displayName || "Foydalanuvchi";
+            const email = data.email || user.email;
+            const role = data.role === 'dizayner' ? '🎨 Dizayner' : '👤 Mijoz';
+            const date = data.createdAt ? new Date(data.createdAt).toLocaleDateString('uz-UZ') : '—';
+
+            document.getElementById('avatarEl').textContent = name.charAt(0).toUpperCase();
+            document.getElementById('nameEl').textContent = name;
+            document.getElementById('emailEl').textContent = email;
+            document.getElementById('roleEl').textContent = role;
+            document.getElementById('infoName').textContent = name;
+            document.getElementById('infoEmail').textContent = email;
+            document.getElementById('infoRole').textContent = role;
+            document.getElementById('infoDate').textContent = date;
+
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('profileContent').style.display = 'block';
+        } catch (e) {
+            console.error(e);
+        }
+    });
+
+    window.logout = async function() {
+        await signOut(auth);
+        window.location.href = "index.html";
+    };
+</script>
+</body>
+</html>
