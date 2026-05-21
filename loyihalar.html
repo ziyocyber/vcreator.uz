@@ -6,85 +6,72 @@
     <title>Loyihalar — VCreator.uz</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #0a0a0a;
-            color: white;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: white; }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 60px;
+            padding: 18px 60px;
             background: #111;
             border-bottom: 1px solid #222;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
-        .logo { font-size: 24px; font-weight: bold; color: #7C3AED; }
-
-        .nav-links a {
-            color: white;
+        .logo { font-size: 22px; font-weight: 800; color: #7C3AED; text-decoration: none; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { color: #888; text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: white; }
+        .btn-nav {
+            background: #7C3AED !important;
+            color: white !important;
+            padding: 9px 22px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+        }
+        .btn-profil {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #0a0a0a !important;
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+            border: 1px solid #222;
             text-decoration: none;
-            margin-left: 30px;
-            font-size: 15px;
+        }
+        .mini-avatar {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7C3AED, #3B82F6);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 800;
         }
 
-        .nav-links a:hover { color: #7C3AED; }
-
-        .hero {
-            text-align: center;
-            padding: 80px 20px 40px;
-        }
-
+        .hero { text-align: center; padding: 80px 20px 40px; }
         .hero h1 { font-size: 42px; font-weight: 800; }
         .hero h1 span { color: #7C3AED; }
         .hero p { color: #aaa; margin-top: 12px; font-size: 18px; }
 
-        .post-btn {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+        .btn-primary { background: #7C3AED; color: white; padding: 13px 28px; border-radius: 9px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+        .btn-primary:hover { background: #6D28D9; }
 
-        .post-btn a {
-            background: #7C3AED;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .filter {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            padding: 20px;
-            flex-wrap: wrap;
-        }
-
+        .filter { display: flex; justify-content: center; gap: 12px; padding: 30px 20px; flex-wrap: wrap; }
         .filter button {
-            background: #111;
-            color: white;
-            border: 1px solid #333;
-            padding: 10px 24px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 14px;
+            background: #111; color: white; border: 1px solid #333;
+            padding: 10px 24px; border-radius: 30px; cursor: pointer;
+            font-size: 14px; transition: all 0.2s;
         }
-
-        .filter button:hover,
-        .filter button.active {
-            background: #7C3AED;
-            border-color: #7C3AED;
-        }
+        .filter button:hover, .filter button.active { background: #7C3AED; border-color: #7C3AED; }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
             padding: 20px 60px 80px;
             max-width: 1200px;
@@ -96,127 +83,64 @@
             border: 1px solid #222;
             border-radius: 16px;
             padding: 24px;
-            transition: transform 0.2s;
+            transition: transform 0.2s, border-color 0.2s;
         }
+        .card:hover { transform: translateY(-4px); border-color: #333; }
 
-        .card:hover { transform: translateY(-4px); }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 14px;
-        }
-
-        .badge {
-            background: #7C3AED22;
+        .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+        .category {
+            background: #7C3AED20;
+            border: 1px solid #7C3AED40;
             color: #7C3AED;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
         }
+        .status-open { background: #10B98120; border: 1px solid #10B98140; color: #10B981; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .status-closed { background: #EF444420; border: 1px solid #EF444440; color: #EF4444; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
 
-        .budget {
-            font-size: 18px;
-            font-weight: 800;
-            color: #10B981;
+        .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+        .card p { color: #888; font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
+
+        .card-info { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+        .info-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #aaa; }
+
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1a1a1a; padding-top: 14px; }
+        .budget { font-size: 16px; font-weight: 800; color: #7C3AED; }
+        .budget span { font-size: 12px; color: #aaa; font-weight: normal; }
+        .btn-apply { background: #7C3AED; color: white; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: background 0.2s; }
+        .btn-apply:hover { background: #6D28D9; }
+
+        footer { text-align: center; padding: 30px; color: #555; border-top: 1px solid #222; font-size: 14px; }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            .grid { padding: 20px 16px 60px; }
+            .hero h1 { font-size: 28px; }
         }
-
-        .card h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .card p {
-            color: #aaa;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-
-        .tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
-        }
-
-        .tag {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: #aaa;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #222;
-            padding-top: 14px;
-        }
-
-        .client {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .avatar {
-            width: 32px;
-[18.05.2026 1:19] My portfolio: height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #7C3AED, #3B82F6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .client-name { font-size: 13px; color: #aaa; }
-        .time { font-size: 12px; color: #555; }
-
-        .apply-btn {
-            background: #7C3AED;
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .apply-btn:hover { background: #6D28D9; }
-
-        .urgent { border-color: #EF4444 !important; }
-        .urgent .badge { background: #EF444422; color: #EF4444; }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo">VCreator.uz</div>
+    <a href="index.html" class="logo">VCreator.uz</a>
     <div class="nav-links">
         <a href="index.html">Bosh sahifa</a>
         <a href="dizaynerlar.html">Dizaynerlar</a>
-        <a href="loyihalar.html" style="color:#7C3AED">Loyihalar</a>
-        <a href="signup.html">Kirish</a>
+        <a href="loyihalar.html" class="active">Loyihalar</a>
+        <div id="authBtn">
+            <a href="login.html" class="btn-nav">Kirish</a>
+        </div>
     </div>
 </nav>
 
 <div class="hero">
-    <h1>Mavjud <span>loyihalar</span></h1>
-    <p>Mijozlarning dizayn loyihalarini ko'ring va ariza yuboring</p>
-</div>
-
-<div class="post-btn">
-    <a href="signup.html">+ Loyiha joylash</a>
+    <h1>Ochiq <span>loyihalar</span></h1>
+    <p>Dizaynerlar uchun eng so'nggi loyihalar</p>
+    <div class="hero-btns">
+        <a href="loyihani.html" class="btn-primary">+ Loyiha joylash</a>
+    </div>
 </div>
 
 <div class="filter">
@@ -225,155 +149,116 @@
     <button>UI/UX</button>
     <button>Brending</button>
     <button>Illustratsiya</button>
+    <button>Motion</button>
 </div>
 
 <div class="grid">
 
-    <div class="card urgent">
+    <div class="card">
         <div class="card-top">
-            <span class="badge">🔴 Shoshilinch</span>
-            <span class="budget">500,000 so'm</span>
+            <span class="category">UI/UX</span>
+            <span class="status-open">Ochiq</span>
         </div>
-        <h3>Restoran uchun logo va brend kitobi kerak</h3>
-        <p>Yangi ochilayotgan restoran uchun zamonaviy logo va to'liq brend identifikatsiyasi ishlab chiqilsin.</p>
-        <div class="tags">
-            <span class="tag">Logo</span>
-            <span class="tag">Brending</span>
-            <span class="tag">Illustrator</span>
+        <h3>Onlayn do'kon uchun mobil ilova dizayni</h3>
+        <p>iOS va Android uchun zamonaviy UI/UX dizayn kerak. Figma da to'liq prototip.</p>
+        <div class="card-info">
+            <div class="info-item">📅 5 kun qoldi</div>
+            <div class="info-item">👤 Sardor T.</div>
         </div>
         <div class="card-footer">
-            <div class="client">
-                <div class="avatar">B</div>
-                <div>
-                    <div class="client-name">Bobur Toshmatov</div>
-                    <div class="time">2 soat oldin</div>
-                </div>
-            </div>
-            <button class="apply-btn">Ariza yuborish</button>
+            <div class="budget">500,000 so'm <span>/ loyiha</span></div>
+            <button class="btn-apply">Ariza berish</button>
         </div>
     </div>
 
     <div class="card">
         <div class="card-top">
-            <span class="badge">UI/UX</span>
-            <span class="budget">800,000 so'm</span>
+            <span class="category">Logo</span>
+            <span class="status-open">Ochiq</span>
         </div>
-        <h3>Mobil ilova uchun UI/UX dizayn</h3>
-        <p>Oziq-ovqat yetkazib berish ilovasi uchun zamonaviy va qulay interfeys kerak. iOS va Android.</p>
-        <div class="tags">
-            <span class="tag">Figma</span>
-            <span class="tag">Mobile</span>
-            <span class="tag">UI/UX</span>
+        <h3>IT kompaniya uchun logo va brend identifikatsiya</h3>
+        <p>Yangi IT startap uchun logo, vizitka va brend guideline kerak.</p>
+        <div class="card-info">
+            <div class="info-item">📅 3 kun qoldi</div>
+            <div class="info-item">👤 Aziza K.</div>
         </div>
         <div class="card-footer">
-            <div class="client">
-                <div class="avatar">S</div>
-                <div>
-                    <div class="client-name">Sarvar Xolmatov</div>
-                    <div class="time">5 soat oldin</div>
-                </div>
-            </div>
-            <button class="apply-btn">Ariza yuborish</button>
+            <div class="budget">300,000 so'm <span>/ loyiha</span></div>
+            <button class="btn-apply">Ariza berish</button>
         </div>
     </div>
 
     <div class="card">
         <div class="card-top">
-            <span class="badge">Web dizayn</span>
-            <span class="budget">1,200,000 so'm</span>
+            <span class="category">Motion</span>
+            <span class="status-open">Ochiq</span>
         </div>
-        <h3>Korporativ veb-sayt dizayni</h3>
-        <p>Qurilish kompaniyasi uchun 5-6 sahifali professional veb-sayt dizayni. Figma da topshirilsin.</p>
-        <div class="tags">
-            <span class="tag">Figma</span>
-            <span class="tag">Web</span>
-            <span class="tag">Korporativ</span>
+        <h3>Mahsulot reklamasi uchun motion dizayn</h3>
+        <p>30 soniyalik reklama animatsiyasi. After Effects da ishlash kerak.</p>
+        <div class="card-info">
+            <div class="info-item">📅 7 kun qoldi</div>
+            <div class="info-item">👤 Bobur M.</div>
         </div>
         <div class="card-footer">
-            <div class="client">
-                <div class="avatar">D</div>
-                <div>
-[18.05.2026 1:19] My portfolio: <div class="client-name">Dilshod Ergashev</div>
-                    <div class="time">1 kun oldin</div>
-                </div>
-            </div>
-            <button class="apply-btn">Ariza yuborish</button>
+            <div class="budget">700,000 so'm <span>/ loyiha</span></div>
+            <button class="btn-apply">Ariza berish</button>
         </div>
     </div>
 
     <div class="card">
         <div class="card-top">
-            <span class="badge">Illustratsiya</span>
-            <span class="budget">300,000 so'm</span>
+            <span class="category">Brending</span>
+            <span class="status-closed">Yopiq</span>
+        </div>
+        <h3>Restoran uchun to'liq brend paketi</h3>
+        <p>Menu dizayn, logo, ijtimoiy tarmoqlar uchun shablonlar.</p>
+        <div class="card-info">
+            <div class="info-item">📅 Tugadi</div>
+            <div class="info-item">👤 Nodira H.</div>
+        </div>
+        <div class="card-footer">
+            <div class="budget">450,000 so'm <span>/ loyiha</span></div>
+            <button class="btn-apply" disabled style="opacity:0.4;cursor:not-allowed">Yopiq</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-top">
+            <span class="category">UI/UX</span>
+            <span class="status-open">Ochiq</span>
+        </div>
+        <h3>Ta'lim platformasi uchun dashboard dizayn</h3>
+        <p>O'quvchilar va o'qituvchilar uchun qulay dashboard. Light va dark mode.</p>
+        <div class="card-info">
+            <div class="info-item">📅 10 kun qoldi</div>
+            <div class="info-item">👤 Jasur R.</div>
+        </div>
+        <div class="card-footer">
+            <div class="budget">600,000 so'm <span>/ loyiha</span></div>
+            <button class="btn-apply">Ariza berish</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-top">
+            <span class="category">Illustratsiya</span>
+            <span class="status-open">Ochiq</span>
         </div>
         <h3>Bolalar kitobi uchun illustratsiyalar</h3>
-        <p>O'zbek xalq ertaklari asosidagi bolalar kitobi uchun 10 ta rang-barang illustratsiya kerak.</p>
-        <div class="tags">
-            <span class="tag">Illustratsiya</span>
-            <span class="tag">Procreate</span>
-            <span class="tag">Bolalar</span>
+        <p>10 ta sahifa uchun rangli illustratsiyalar. Procreate yoki Illustrator.</p>
+        <div class="card-info">
+            <div class="info-item">📅 14 kun qoldi</div>
+            <div class="info-item">👤 Malika Y.</div>
         </div>
         <div class="card-footer">
-            <div class="client">
-                <div class="avatar">N</div>
-                <div>
-                    <div class="client-name">Nodira Karimova</div>
-                    <div class="time">2 kun oldin</div>
-                </div>
-            </div>
-            <button class="apply-btn">Ariza yuborish</button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-top">
-            <span class="badge">Social Media</span>
-            <span class="budget">250,000 so'm</span>
-        </div>
-        <h3>Instagram uchun oylik kontent dizayn</h3>
-        <p>Kiyim-kechak brendi uchun har oyda 30 ta Instagram post va stories dizayni kerak.</p>
-        <div class="tags">
-            <span class="tag">Instagram</span>
-            <span class="tag">SMM</span>
-            <span class="tag">Photoshop</span>
-        </div>
-        <div class="card-footer">
-            <div class="client">
-                <div class="avatar">F</div>
-                <div>
-                    <div class="client-name">Feruza Yuldasheva</div>
-                    <div class="time">3 kun oldin</div>
-                </div>
-            </div>
-            <button class="apply-btn">Ariza yuborish</button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-top">
-            <span class="badge">Motion</span>
-            <span class="budget">600,000 so'm</span>
-        </div>
-        <h3>Reklama uchun animatsion video</h3>
-        <p>Yangi mahsulot taqdimoti uchun 30 soniyalik animatsion reklama video kerak.</p>
-        <div class="tags">
-            <span class="tag">After Effects</span>
-            <span class="tag">Motion</span>
-            <span class="tag">Animation</span>
-        </div>
-        <div class="card-footer">
-            <div class="client">
-                <div class="avatar">A</div>
-                <div>
-                    <div class="client-name">Anvar Mirzayev</div>
-                    <div class="time">4 kun oldin</div>
-                </div>
-            </div>
-            <button class="apply-btn">Ariza yuborish</button>
+            <div class="budget">800,000 so'm <span>/ loyiha</span></div>
+            <button class="btn-apply">Ariza berish</button>
         </div>
     </div>
 
 </div>
+
+<footer><p>© 2026 VCreator.uz — Barcha huquqlar himoyalangan</p></footer>
 
 <script>
     const buttons = document.querySelectorAll('.filter button');
@@ -385,5 +270,36 @@
     });
 </script>
 
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyC9Ex4rMhqqP5z48mdFwijsGZW-BJIv2Tw",
+        authDomain: "vcreator-a854f.firebaseapp.com",
+        projectId: "vcreator-a854f",
+        storageBucket: "vcreator-a854f.firebasestorage.app",
+        messagingSenderId: "648815678229",
+        appId: "1:648815678229:web:404b25bed0514eb8b08f1c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+        const authBtn = document.getElementById('authBtn');
+        if (user) {
+            const name = user.displayName || user.email;
+            const initial = name.charAt(0).toUpperCase();
+            authBtn.innerHTML = `
+                <a href="profil.html" class="btn-profil">
+                    <div class="mini-avatar">${initial}</div>
+                    ${name.split(' ')[0]}
+                </a>`;
+        } else {
+            authBtn.innerHTML = `<a href="login.html" class="btn-nav">Kirish</a>`;
+        }
+    });
+</script>
 </body>
 </html>
