@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirish — VCreator.uz</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 60px;
+            background: #111;
+            border-bottom: 1px solid #222;
+        }
+        .logo { font-size: 22px; font-weight: 800; color: #7C3AED; text-decoration: none; }
+        .nav-links a { color: #888; text-decoration: none; margin-left: 28px; font-size: 15px; }
+        .nav-links a:hover { color: white; }
+
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .box {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 44px;
+            width: 100%;
+            max-width: 420px;
+        }
+        .box h1 { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+        .box p { color: #888; font-size: 14px; margin-bottom: 28px; }
+
+        .tabs {
+            display: flex;
+            background: #0a0a0a;
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 24px;
+            border: 1px solid #222;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #888;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .tab.active { background: #7C3AED; color: white; }
+
+        .form-group { margin-bottom: 16px; }
+        label { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
+        input {
+            width: 100%;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus { border-color: #7C3AED; }
+
+        .btn-primary {
+            width: 100%;
+            background: #7C3AED;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 8px;
+        }
+        .btn-primary:hover { background: #6D28D9; }
+        .btn-primary:disabled { background: #444; cursor: not-allowed; }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+            color: #444;
+            font-size: 13px;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #222;
+        }
+
+        .btn-google {
+            width: 100%;
+            background: transparent;
+            color: white;
+            border: 1px solid #333;
+            padding: 13px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-google:hover { border-color: #555; }
+
+        .msg {
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .msg.error { background: #FF000015; border: 1px solid #FF000040; color: #ff6b6b; display: block; }
+        .msg.success { background: #00FF0015; border: 1px solid #00FF0040; color: #6bff6b; display: block; }
+
+        footer { text-align: center; padding: 24px; color: #555; font-size: 13px; border-top: 1px solid #222; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">VCreator.uz</a>
+    <div class="nav-links">
+        <a href="index.html">Bosh sahifa</a>
+        <a href="dizaynerlar.html">Dizaynerlar</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="box">
+        <h1>Kirish</h1>
+        <p>Akkauntingizga kiring</p>
+
+        <div class="tabs">
+            <span class="tab active">Kirish</span>
+            <a href="signup.html" class="tab">Ro'yxat</a>
+        </div>
+
+        <div id="msg" class="msg"></div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="email@gmail.com">
+        </div>
+
+        <div class="form-group">
+            <label>Parol</label>
+            <input type="password" id="password" placeholder="Parolingiz">
+        </div>
+
+        <button class="btn-primary" onclick="login()" id="loginBtn">Kirish</button>
+
+        <div class="divider">yoki</div>
+
+        <button class="btn-google" onclick="signInGoogle()">
+            <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z"/></svg>
+            Google bilan kirish
+        </button>
+    </div>
+</div>
+
+<footer>© 2026 VCreator.uz</footer>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyC9Ex4rMhqqP5z48mdFwijsGZW-BJIv2Tw",
+        authDomain: "vcreator-a854f.firebaseapp.com",
+        projectId: "vcreator-a854f",
+        storageBucket: "vcreator-a854f.firebasestorage.app",
+        messagingSenderId: "648815678229",
+        appId: "1:648815678229:web:404b25bed0514eb8b08f1c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
+
+    function showMsg(text, type) {
+        const el = document.getElementById('msg');
+        el.textContent = text;
+        el.className = 'msg ' + type;
+    }
+
+    window.login = async function() {
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const btn = document.getElementById('loginBtn');
+
+        if (!email) return showMsg("Email kiriting", "error");
+        if (!password) return showMsg("Parol kiriting", "error");
+
+        btn.disabled = true;
+        btn.textContent = "Yuklanmoqda...";
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            showMsg("Muvaffaqiyatli kirdingiz! 🎉", "success");
+            setTimeout(() => window.location.href = "profil.html", 1000);
+        } catch (e) {
+            const errors = {
+                'auth/user-not-found': 'Bu email bilan foydalanuvchi topilmadi',
+                'auth/wrong-password': 'Parol noto\'g\'ri',
+                'auth/invalid-credential': 'Email yoki parol noto\'g\'ri',
+                'auth/too-many-requests': 'Juda ko\'p urinish. Biroz kuting'
+            };
+            showMsg(errors[e.code] || e.message, "error");
+            btn.disabled = false;
+            btn.textContent = "Kirish";
+        }
+    };
+
+    window.signInGoogle = async function() {
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (!userDoc.exists()) {
+                await setDoc(doc(db, "users", user.uid), {
+                    name: user.displayName,
+                    email: user.email,
+                    role: 'mijoz',
+                    createdAt: new Date().toISOString()
+                });
+            }
+            window.location.href = "profil.html";
+        } catch (e) {
+            showMsg("Google bilan kirishda xatolik", "error");
+        }
+    };
+</script>
+</body>
+</html>
