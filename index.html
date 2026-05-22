@@ -95,9 +95,10 @@
   /* ===== HERO ===== */
   .hero {
     min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding: 8rem 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem 3rem;
     position: relative;
     overflow: hidden;
   }
@@ -161,8 +162,13 @@
 
   .hero-inner {
     position: relative; z-index: 1;
-    text-align: center;
-    max-width: 820px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    text-align: left;
   }
 
   .hero-badge {
@@ -193,8 +199,8 @@
   h1 {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    line-height: 1.05;
+    font-size: clamp(1.9rem, 3.5vw, 3rem);
+    line-height: 1.15;
     letter-spacing: -0.03em;
     color: var(--ink);
     margin-bottom: 1.5rem;
@@ -229,13 +235,13 @@
     font-weight: 300;
     color: var(--muted);
     max-width: 520px;
-    margin: 0 auto 2.5rem;
+    margin: 0 0 2.5rem;
     line-height: 1.7;
     animation: fadeInUp 0.8s ease 0.2s both;
   }
 
   .hero-cta {
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: flex-start;
     gap: 1rem; flex-wrap: wrap;
     animation: fadeInUp 0.8s ease 0.3s both;
   }
@@ -285,11 +291,11 @@
 
   /* STATS TICKER */
   .stats-bar {
-    margin-top: 4rem;
+    margin-top: 3rem;
     padding: 1.5rem 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: flex-start;
     gap: 3rem; flex-wrap: wrap;
     animation: fadeIn 1s ease 0.5s both;
   }
@@ -390,7 +396,7 @@
     width: 48px; height: 48px;
     border-radius: 12px;
     background: var(--bg2);
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: flex-start;
     font-size: 1.3rem;
     margin-bottom: 1.25rem;
     transition: background 0.25s, transform 0.25s;
@@ -550,7 +556,7 @@
 
   .cta-section .section-desc {
     color: rgba(255,255,255,0.55);
-    margin: 0 auto 2.5rem;
+    margin: 0 0 2.5rem;
   }
 
   .btn-white {
@@ -615,6 +621,11 @@
   }
 
   /* MOBILE */
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr !important; }
+    .hero-inner > div:last-child { display: none; }
+  }
+
   @media (max-width: 640px) {
     nav { padding: 0 1rem; }
     .nav-links { display: none; }
@@ -650,38 +661,80 @@
   <div class="shape shape-3"></div>
 
   <div class="hero-inner">
-    <div class="hero-badge">
-      <div class="badge-live"></div>
-      500+ faol dizayner shu onda onlayn
+    <!-- LEFT: Text -->
+    <div>
+      <div class="hero-badge" style="animation: fadeInDown 0.7s ease both;">
+        <div class="badge-live"></div>
+        500+ faol dizayner onlayn
+      </div>
+
+      <h1 style="animation: fadeInUp 0.8s ease 0.1s both;">
+        O'zbek <em>dizaynerlar</em>ni bir joyda toping
+      </h1>
+
+      <p class="hero-sub" style="animation: fadeInUp 0.8s ease 0.2s both;">
+        Mijozlar va kreativ dizaynerlarni bog'lovchi O'zbekistonning eng ishonchli platformasi
+      </p>
+
+      <div class="hero-cta" style="animation: fadeInUp 0.8s ease 0.3s both;">
+        <a href="dizaynerlar.html" class="btn-primary"><span>Dizayner topish →</span></a>
+        <a href="loyihani.html" class="btn-outline">Loyiha joylash</a>
+      </div>
+
+      <div class="stats-bar" style="margin-top: 2.5rem; justify-content: flex-start; animation: fadeIn 1s ease 0.5s both;">
+        <div class="stat-item">
+          <span class="stat-num"><span class="counter" data-target="500">0</span>+</span>
+          <span class="stat-label">Dizaynerlar</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num"><span class="counter" data-target="1200">0</span>+</span>
+          <span class="stat-label">Loyihalar</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num"><span class="counter" data-target="98">0</span>%</span>
+          <span class="stat-label">Mamnuniyat</span>
+        </div>
+      </div>
     </div>
 
-    <h1>
-      O'zbek <em>dizaynerlar</em>ni<br>bir joyda toping
-    </h1>
-
-    <p class="hero-sub">
-      Mijozlar va kreativ dizaynerlarni bog'lovchi O'zbekistonning eng ishonchli platformasi
-    </p>
-
-    <div class="hero-cta">
-      <a href="dizaynerlar.html" class="btn-primary"><span>Dizayner topish →</span></a>
-      <a href="loyihani.html" class="btn-outline">Loyiha joylash</a>
-    </div>
-
-    <div class="stats-bar">
-      <div class="stat-item">
-        <span class="stat-num"><span class="counter" data-target="500">0</span>+</span>
-        <span class="stat-label">Dizaynerlar</span>
+    <!-- RIGHT: Visual card stack -->
+    <div style="display: flex; flex-direction: column; gap: 1rem; animation: fadeInUp 0.9s ease 0.3s both;">
+      <!-- Featured designer card -->
+      <div style="background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 1.5rem; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2));"></div>
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--bg2); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">👨‍🎨</div>
+          <div>
+            <div style="font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--ink);">Jasur Toshmatov</div>
+            <div style="font-size: 0.75rem; color: var(--muted);">UI/UX Dizayner · Toshkent</div>
+          </div>
+          <div style="margin-left: auto; background: #dcfce7; color: #16a34a; font-size: 0.7rem; font-weight: 500; padding: 3px 10px; border-radius: 100px;">Faol</div>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span style="background: var(--bg2); border-radius: 100px; padding: 4px 12px; font-size: 0.72rem; color: var(--ink2);">Figma</span>
+          <span style="background: var(--bg2); border-radius: 100px; padding: 4px 12px; font-size: 0.72rem; color: var(--ink2);">Brending</span>
+          <span style="background: var(--bg2); border-radius: 100px; padding: 4px 12px; font-size: 0.72rem; color: var(--ink2);">Mobil UI</span>
+        </div>
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;">
+          <div style="font-size: 0.8rem; color: var(--muted);">⭐ 4.9 · 87 ta loyiha</div>
+          <div style="font-size: 0.85rem; font-weight: 500; color: var(--accent);">$25/soat</div>
+        </div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <span class="stat-num"><span class="counter" data-target="1200">0</span>+</span>
-        <span class="stat-label">Bajarilgan loyihalar</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <span class="stat-num"><span class="counter" data-target="98">0</span>%</span>
-        <span class="stat-label">Mijozlar mamnuniyati</span>
+
+      <!-- Mini stat row -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div style="background: var(--ink); border-radius: 16px; padding: 1.25rem; color: var(--white);">
+          <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.1em;">Bugun</div>
+          <div style="font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700;">12</div>
+          <div style="font-size: 0.75rem; color: rgba(255,255,255,0.6);">yangi loyiha</div>
+        </div>
+        <div style="background: var(--accent); border-radius: 16px; padding: 1.25rem; color: var(--white);">
+          <div style="font-size: 0.7rem; color: rgba(255,255,255,0.7); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.1em;">O'rtacha</div>
+          <div style="font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700;">4h</div>
+          <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">javob vaqti</div>
+        </div>
       </div>
     </div>
   </div>
