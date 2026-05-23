@@ -1,281 +1,431 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dizaynerlar — VCreator.uz</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: white; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dizaynerlar — VCreator.uz</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 60px;
-            background: #111;
-            border-bottom: 1px solid #222;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo { font-size: 22px; font-weight: 800; color: #7C3AED; text-decoration: none; }
-        .nav-links { display: flex; align-items: center; gap: 32px; }
-        .nav-links a { color: #888; text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover, .nav-links a.active { color: white; }
-        .btn-nav {
-            background: #7C3AED !important;
-            color: white !important;
-            padding: 9px 22px;
-            border-radius: 8px;
-            font-weight: 600 !important;
-            font-size: 14px !important;
-        }
-        .btn-profil {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: #0a0a0a !important;
-            color: white !important;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 600 !important;
-            font-size: 14px !important;
-            border: 1px solid #222;
-            text-decoration: none;
-        }
-        .mini-avatar {
-            width: 26px; height: 26px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #7C3AED, #3B82F6);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 12px; font-weight: 800;
-        }
+  :root {
+    --ink: #0f0e0c;
+    --ink2: #3a3830;
+    --muted: #8a8880;
+    --bg: #f5f3ee;
+    --bg2: #edeae3;
+    --accent: #c94f1e;
+    --accent2: #e8722a;
+    --white: #faf9f6;
+    --border: rgba(15,14,12,0.1);
+    --radius: 16px;
+  }
 
-        .hero { text-align: center; padding: 80px 20px 40px; }
-        .hero h1 { font-size: 42px; font-weight: 800; }
-        .hero h1 span { color: #7C3AED; }
-        .hero p { color: #aaa; margin-top: 12px; font-size: 18px; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-        .filter { display: flex; justify-content: center; gap: 12px; padding: 30px 20px; flex-wrap: wrap; }
-        .filter button {
-            background: #111; color: white; border: 1px solid #333;
-            padding: 10px 24px; border-radius: 30px; cursor: pointer;
-            font-size: 14px; transition: all 0.2s;
-        }
-        .filter button:hover, .filter button.active { background: #7C3AED; border-color: #7C3AED; }
+  /* NAVBAR */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 2rem; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(245,243,238,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem;
+    color: var(--ink); text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .logo-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.7; }
+  }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.875rem; font-weight: 400;
+    color: var(--ink2); transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active { color: var(--accent); font-weight: 500; }
+  .btn-nav {
+    background: var(--ink) !important; color: var(--white) !important;
+    padding: 8px 20px !important; border-radius: 100px !important;
+    font-size: 0.875rem !important; font-weight: 500 !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .btn-nav:hover { background: var(--accent) !important; transform: translateY(-1px); }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-            padding: 20px 60px 80px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+  /* PAGE HEADER */
+  .page-header {
+    padding: 110px 2rem 50px;
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+    animation: fadeInUp 0.7s ease both;
+  }
+  .page-label {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.75rem;
+  }
+  .page-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1; letter-spacing: -0.03em; color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  .page-title em { font-style: normal; color: var(--accent); }
+  .page-desc {
+    font-size: 1rem; font-weight: 300;
+    color: var(--muted); max-width: 460px; line-height: 1.7;
+  }
+  .page-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 100px; padding: 8px 18px;
+    font-size: 0.82rem; color: var(--ink2); white-space: nowrap;
+  }
+  .badge-live {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34,197,94,0.5);
+    animation: live-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes live-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+    50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+  }
 
-        .card { background: #111; border: 1px solid #222; border-radius: 16px; overflow: hidden; transition: transform 0.2s; }
-        .card:hover { transform: translateY(-4px); }
-        .card-cover {
-            width: 100%; height: 160px;
-            background: linear-gradient(135deg, #7C3AED, #3B82F6);
-            display: flex; align-items: center; justify-content: center; font-size: 48px;
-        }
-        .card-body { padding: 20px; }
-        .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-        .avatar {
-            width: 48px; height: 48px; border-radius: 50%;
-            background: linear-gradient(135deg, #7C3AED, #3B82F6);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 20px; font-weight: bold; flex-shrink: 0;
-        }
-        .name { font-size: 16px; font-weight: 700; }
-        .role { font-size: 13px; color: #7C3AED; margin-top: 2px; }
-        .rating { margin-left: auto; color: #F59E0B; font-size: 14px; font-weight: 600; }
-        .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-        .tag { background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 4px 12px; border-radius: 20px; font-size: 12px; }
-        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 14px; }
-        .price { font-size: 15px; font-weight: 700; color: #7C3AED; }
-        .price span { font-size: 12px; color: #aaa; font-weight: normal; }
-        .btn { background: #7C3AED; color: white; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; }
-        .btn:hover { background: #6D28D9; }
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    padding: 0 2rem 2rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .filter-btn {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 100px; padding: 8px 18px;
+    font-size: 0.82rem; font-weight: 400; color: var(--ink2);
+    cursor: pointer; transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .filter-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .filter-btn.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
 
-        footer { text-align: center; padding: 30px; color: #555; border-top: 1px solid #222; font-size: 14px; }
+  /* GRID */
+  .grid-wrapper { padding: 0 2rem 5rem; max-width: 1100px; margin: 0 auto; }
+  .designers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
 
-        @media (max-width: 768px) {
-            nav { padding: 16px 20px; }
-            .grid { padding: 20px 16px 60px; }
-        }
-    </style>
+  /* DESIGNER CARD */
+  .designer-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 20px; padding: 1.5rem;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative; overflow: hidden;
+    animation: fadeInUp 0.6s ease both;
+  }
+  .designer-card:nth-child(2) { animation-delay: 0.05s; }
+  .designer-card:nth-child(3) { animation-delay: 0.1s; }
+  .designer-card:nth-child(4) { animation-delay: 0.15s; }
+  .designer-card:nth-child(5) { animation-delay: 0.2s; }
+  .designer-card:nth-child(6) { animation-delay: 0.25s; }
+
+  .designer-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .designer-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(15,14,12,0.1); border-color: rgba(201,79,30,0.2); }
+  .designer-card:hover::before { transform: scaleX(1); }
+
+  .designer-top { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+  .designer-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--bg2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .designer-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+  .designer-role { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .designer-status {
+    margin-left: auto;
+    font-size: 0.7rem; font-weight: 500;
+    padding: 3px 10px; border-radius: 100px;
+  }
+  .status-active { background: #dcfce7; color: #16a34a; }
+  .status-busy { background: #fef3c7; color: #d97706; }
+
+  .designer-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+  .tag {
+    background: var(--bg2); border-radius: 100px;
+    padding: 4px 12px; font-size: 0.72rem; color: var(--ink2);
+  }
+
+  .designer-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 1rem;
+  }
+  .designer-meta { display: flex; flex-direction: column; gap: 2px; }
+  .designer-rating { font-size: 0.8rem; color: var(--ink2); }
+  .designer-price { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--accent); }
+
+  .btn-contact {
+    background: var(--ink); color: var(--white); text-decoration: none;
+    padding: 7px 18px; border-radius: 100px;
+    font-size: 0.78rem; font-weight: 500;
+    border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-contact:hover { background: var(--accent); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border); padding: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  footer p { font-size: 0.8rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+  .footer-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--ink); }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .page-header, .filter-bar, .grid-wrapper { padding-left: 1.25rem; padding-right: 1.25rem; }
+    footer { padding: 2rem 1.25rem; }
+  }
+</style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav>
-    <a href="index.html" class="logo">VCreator.uz</a>
-    <div class="nav-links">
-        <a href="index.html">Bosh sahifa</a>
-        <a href="dizaynerlar.html" class="active">Dizaynerlar</a>
-        <a href="loyihalar.html">Loyihalar</a>
-        <div id="authBtn">
-            <a href="login.html" class="btn-nav">Kirish</a>
-        </div>
-    </div>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-dot"></div>
+    VCreator.uz
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Bosh sahifa</a></li>
+    <li><a href="dizaynerlar.html" class="active">Dizaynerlar</a></li>
+    <li><a href="loyihalar.html">Loyihalar</a></li>
+    <li><a href="login.html" class="btn-nav">Kirish</a></li>
+  </ul>
 </nav>
 
-<div class="hero">
-    <h1>Eng yaxshi <span>dizaynerlar</span></h1>
-    <p>O'zbekistonning kreativ mutaxassislari bilan ishlang</p>
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div>
+    <p class="page-label">Mutaxassislar</p>
+    <h1 class="page-title">Eng yaxshi <em>dizaynerlar</em></h1>
+    <p class="page-desc">Tekshirilgan, portfoliosi bor, baholangan — O'zbekistonning kreativ ijodkorlari</p>
+  </div>
+  <div class="page-badge">
+    <div class="badge-live"></div>
+    500+ faol dizayner
+  </div>
 </div>
 
-<div class="filter">
-    <button class="active">Hammasi</button>
-    <button>Logo dizayn</button>
-    <button>UI/UX</button>
-    <button>Brending</button>
-    <button>Illustratsiya</button>
-    <button>Motion</button>
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCards(this, 'all')">Hammasi</button>
+  <button class="filter-btn" onclick="filterCards(this, 'uiux')">UI/UX</button>
+  <button class="filter-btn" onclick="filterCards(this, 'logo')">Logo</button>
+  <button class="filter-btn" onclick="filterCards(this, 'web')">Web dizayn</button>
+  <button class="filter-btn" onclick="filterCards(this, 'motion')">Motion</button>
+  <button class="filter-btn" onclick="filterCards(this, 'brend')">Brending</button>
 </div>
 
-<div class="grid">
-    <div class="card">
-        <div class="card-cover">🎨</div>
-        <div class="card-body">
-            <div class="card-header">
-                <div class="avatar">A</div>
-                <div><div class="name">Alisher Karimov</div><div class="role">UI/UX Dizayner</div></div>
-                <div class="rating">⭐ 4.9</div>
-            </div>
-            <div class="tags"><span class="tag">Figma</span><span class="tag">UI/UX</span><span class="tag">Mobile</span></div>
-            <div class="card-footer">
-                <div class="price">150,000 so'm <span>/ loyiha</span></div>
-                <button class="btn">Bog'lanish</button>
-            </div>
+<!-- DESIGNERS GRID -->
+<div class="grid-wrapper">
+  <div class="designers-grid" id="designersGrid">
+
+    <div class="designer-card" data-cat="uiux">
+      <div class="designer-top">
+        <div class="designer-avatar">👨‍🎨</div>
+        <div>
+          <div class="designer-name">Jasur Toshmatov</div>
+          <div class="designer-role">UI/UX Dizayner · Toshkent</div>
         </div>
+        <div class="designer-status status-active">Faol</div>
+      </div>
+      <div class="designer-tags">
+        <span class="tag">Figma</span>
+        <span class="tag">Mobil UI</span>
+        <span class="tag">Brending</span>
+      </div>
+      <div class="designer-footer">
+        <div class="designer-meta">
+          <div class="designer-rating">⭐ 4.9 · 87 ta loyiha</div>
+          <div class="designer-price">$25/soat</div>
+        </div>
+        <button class="btn-contact">Bog'lanish</button>
+      </div>
     </div>
 
-    <div class="card">
-        <div class="card-cover">✏️</div>
-        <div class="card-body">
-            <div class="card-header">
-                <div class="avatar">M</div>
-                <div><div class="name">Malika Yusupova</div><div class="role">Logo Dizayner</div></div>
-                <div class="rating">⭐ 4.8</div>
-            </div>
-            <div class="tags"><span class="tag">Logo</span><span class="tag">Brend</span><span class="tag">Illustrator</span></div>
-            <div class="card-footer">
-                <div class="price">80,000 so'm <span>/ loyiha</span></div>
-                <button class="btn">Bog'lanish</button>
-            </div>
+    <div class="designer-card" data-cat="logo brend">
+      <div class="designer-top">
+        <div class="designer-avatar">👩‍💻</div>
+        <div>
+          <div class="designer-name">Malika Yusupova</div>
+          <div class="designer-role">Logo & Brend Dizayner · Samarqand</div>
         </div>
+        <div class="designer-status status-active">Faol</div>
+      </div>
+      <div class="designer-tags">
+        <span class="tag">Logo</span>
+        <span class="tag">Brend ID</span>
+        <span class="tag">Illustrator</span>
+      </div>
+      <div class="designer-footer">
+        <div class="designer-meta">
+          <div class="designer-rating">⭐ 4.8 · 64 ta loyiha</div>
+          <div class="designer-price">$18/soat</div>
+        </div>
+        <button class="btn-contact">Bog'lanish</button>
+      </div>
     </div>
 
-    <div class="card">
-        <div class="card-cover">🖥️</div>
-        <div class="card-body">
-            <div class="card-header">
-                <div class="avatar">J</div>
-                <div><div class="name">Jasur Rahimov</div><div class="role">Web Dizayner</div></div>
-                <div class="rating">⭐ 4.7</div>
-            </div>
-            <div class="tags"><span class="tag">Web</span><span class="tag">Figma</span><span class="tag">Photoshop</span></div>
-            <div class="card-footer">
-                <div class="price">200,000 so'm <span>/ loyiha</span></div>
-                <button class="btn">Bog'lanish</button>
-            </div>
+    <div class="designer-card" data-cat="web">
+      <div class="designer-top">
+        <div class="designer-avatar">🧑‍🎨</div>
+        <div>
+          <div class="designer-name">Alisher Karimov</div>
+          <div class="designer-role">Web Dizayner · Toshkent</div>
         </div>
+        <div class="designer-status status-busy">Band</div>
+      </div>
+      <div class="designer-tags">
+        <span class="tag">Figma</span>
+        <span class="tag">Webflow</span>
+        <span class="tag">Photoshop</span>
+      </div>
+      <div class="designer-footer">
+        <div class="designer-meta">
+          <div class="designer-rating">⭐ 4.9 · 110 ta loyiha</div>
+          <div class="designer-price">$30/soat</div>
+        </div>
+        <button class="btn-contact">Bog'lanish</button>
+      </div>
     </div>
 
-    <div class="card">
-        <div class="card-cover">🎬</div>
-        <div class="card-body">
-            <div class="card-header">
-                <div class="avatar">Z</div>
-                <div><div class="name">Zulfiya Tosheva</div><div class="role">Motion Dizayner</div></div>
-                <div class="rating">⭐ 5.0</div>
-            </div>
-            <div class="tags"><span class="tag">After Effects</span><span class="tag">Motion</span></div>
-            <div class="card-footer">
-                <div class="price">300,000 so'm <span>/ loyiha</span></div>
-                <button class="btn">Bog'lanish</button>
-            </div>
+    <div class="designer-card" data-cat="motion">
+      <div class="designer-top">
+        <div class="designer-avatar">🎬</div>
+        <div>
+          <div class="designer-name">Sherzod Rajabov</div>
+          <div class="designer-role">Motion Dizayner · Toshkent</div>
         </div>
+        <div class="designer-status status-active">Faol</div>
+      </div>
+      <div class="designer-tags">
+        <span class="tag">After Effects</span>
+        <span class="tag">Lottie</span>
+        <span class="tag">Premiere</span>
+      </div>
+      <div class="designer-footer">
+        <div class="designer-meta">
+          <div class="designer-rating">⭐ 4.7 · 52 ta loyiha</div>
+          <div class="designer-price">$22/soat</div>
+        </div>
+        <button class="btn-contact">Bog'lanish</button>
+      </div>
     </div>
 
-    <div class="card">
-        <div class="card-cover">🖼️</div>
-        <div class="card-body">
-            <div class="card-header">
-                <div class="avatar">S</div>
-                <div><div class="name">Sardor Nazarov</div><div class="role">Illustrator</div></div>
-                <div class="rating">⭐ 4.6</div>
-            </div>
-            <div class="tags"><span class="tag">Illustratsiya</span><span class="tag">Procreate</span></div>
-            <div class="card-footer">
-                <div class="price">120,000 so'm <span>/ loyiha</span></div>
-                <button class="btn">Bog'lanish</button>
-            </div>
+    <div class="designer-card" data-cat="uiux web">
+      <div class="designer-top">
+        <div class="designer-avatar">👩‍🎨</div>
+        <div>
+          <div class="designer-name">Nodira Xasanova</div>
+          <div class="designer-role">Product Dizayner · Andijon</div>
         </div>
+        <div class="designer-status status-active">Faol</div>
+      </div>
+      <div class="designer-tags">
+        <span class="tag">Figma</span>
+        <span class="tag">Prototyping</span>
+        <span class="tag">Research</span>
+      </div>
+      <div class="designer-footer">
+        <div class="designer-meta">
+          <div class="designer-rating">⭐ 4.8 · 75 ta loyiha</div>
+          <div class="designer-price">$28/soat</div>
+        </div>
+        <button class="btn-contact">Bog'lanish</button>
+      </div>
     </div>
 
-    <div class="card">
-        <div class="card-cover">📱</div>
-        <div class="card-body">
-            <div class="card-header">
-                <div class="avatar">N</div>
-                <div><div class="name">Nilufar Hasanova</div><div class="role">Mobile UI Dizayner</div></div>
-                <div class="rating">⭐ 4.9</div>
-            </div>
-            <div class="tags"><span class="tag">Mobile</span><span class="tag">iOS</span><span class="tag">Android</span></div>
-            <div class="card-footer">
-                <div class="price">180,000 so'm <span>/ loyiha</span></div>
-                <button class="btn">Bog'lanish</button>
-            </div>
+    <div class="designer-card" data-cat="brend logo">
+      <div class="designer-top">
+        <div class="designer-avatar">🎨</div>
+        <div>
+          <div class="designer-name">Bobur Mirzayev</div>
+          <div class="designer-role">Brend Dizayner · Buxoro</div>
         </div>
+        <div class="designer-status status-busy">Band</div>
+      </div>
+      <div class="designer-tags">
+        <span class="tag">Brend</span>
+        <span class="tag">Packaging</span>
+        <span class="tag">Print</span>
+      </div>
+      <div class="designer-footer">
+        <div class="designer-meta">
+          <div class="designer-rating">⭐ 4.6 · 43 ta loyiha</div>
+          <div class="designer-price">$20/soat</div>
+        </div>
+        <button class="btn-contact">Bog'lanish</button>
+      </div>
     </div>
+
+  </div>
 </div>
 
-<footer><p>© 2026 VCreator.uz — Barcha huquqlar himoyalangan</p></footer>
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 VCreator.uz — Barcha huquqlar himoyalangan</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Bosh sahifa</a></li>
+    <li><a href="loyihalar.html">Loyihalar</a></li>
+    <li><a href="login.html">Kirish</a></li>
+  </ul>
+</footer>
 
 <script>
-    const buttons = document.querySelectorAll('.filter button');
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            buttons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        });
+  function filterCards(btn, cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.designer-card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat.includes(cat)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
     });
-</script>
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyC9Ex4rMhqqP5z48mdFwijsGZW-BJIv2Tw",
-        authDomain: "vcreator-a854f.firebaseapp.com",
-        projectId: "vcreator-a854f",
-        storageBucket: "vcreator-a854f.firebasestorage.app",
-        messagingSenderId: "648815678229",
-        appId: "1:648815678229:web:404b25bed0514eb8b08f1c"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-        const authBtn = document.getElementById('authBtn');
-        if (user) {
-            const name = user.displayName || user.email;
-            const initial = name.charAt(0).toUpperCase();
-            authBtn.innerHTML = `
-                <a href="profil.html" class="btn-profil">
-                    <div class="mini-avatar">${initial}</div>
-                    ${name.split(' ')[0]}
-                </a>`;
-        } else {
-            authBtn.innerHTML = `<a href="login.html" class="btn-nav">Kirish</a>`;
-        }
-    });
+  }
 </script>
 </body>
 </html>
